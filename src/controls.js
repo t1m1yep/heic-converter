@@ -1,13 +1,15 @@
 const find = selector => document.querySelector(selector);
 
 const QUALITY_OPTIONS = [
-  { mime: 'image/png', quality: 1, text: 'PNG' },
-  { mime: 'image/jpeg', quality: 1, text: 'JPG' },
+  { mime: 'image/png', quality: 1, text: 'PNG at 100%' },
+  { mime: 'image/jpeg', quality: 1, text: 'JPG at 100%' },
+  { mime: 'image/jpeg', quality: 0.92, text: 'JPG at 92%' },
+  { mime: 'image/jpeg', quality: 0.8, text: 'JPG at 80%' },
 ];
 
 const RESULTS_OPTIONS = [
-  { text: 'просмотреть картинки', value: 'display' },
-  { text: 'скачать картинки', value: 'download' },
+  { text: 'display images', value: 'display' },
+  { text: 'download images', value: 'download' },
 ];
 
 export default ({ events, menu, storage }) => {
@@ -51,7 +53,7 @@ export default ({ events, menu, storage }) => {
   const onOpenClick = () => void openInput.click();
   const onQuality = () => {
     const choices = [
-      { meta: true, text: 'выберите выходное качество и разрешение' },
+      { meta: true, text: 'Choose output format and quality' },
     ].concat(QUALITY_OPTIONS).map(choice => {
       if (choice.mime === DEFAULT_EXPORT_QUALITY.mime && choice.quality === DEFAULT_EXPORT_QUALITY.quality) {
         return Object.assign({ icon: 'check' }, choice);
@@ -71,7 +73,7 @@ export default ({ events, menu, storage }) => {
   };
   const onResults = () => {
     const choices = [
-      { text: 'после конвертации', meta: true },
+      { text: 'After conversion', meta: true },
     ].concat(RESULTS_OPTIONS).map(choice => {
       if (choice.value === DEFAULT_RESULT.value) {
         return Object.assign({ icon: 'check' }, choice);
