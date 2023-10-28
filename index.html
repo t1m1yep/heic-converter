@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>HEIC Converter</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="heic,heif,convert,converter,heic converter,image converter,convert heic online,javascript,catdad">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#202124">
+  <link rel="icon" type="image/png" href="assets/icon-512.png" />
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link href="https://cdn.jsdelivr.net/npm/toastify-js@1.6.1/src/toastify.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="src/style.css">
+</head>
+
+<body>
+  <div id="unsupported" class="unsupported limit">
+    <p>This browser is not supported.</p>
+    <p>See the <a href="https://github.com/catdad-experiments/heic-app">GitHub page</a> for more info.</p>
+  </div>
+
+  <div id="main" class="main limit hide">
+    <div id="intro" class="intro">
+      <p><b>Choose a HEIC file</b> or drag it here</p>
+      <i class="material-icons">insert_photo</i>
+    </div>
+    <div class="settings">
+      <div class="label">After conversion:</div>
+      <div class="value" data-for="results">...</div>
+      <div class="label">Output format and quality</div>
+      <div class="value" data-for="quality">...</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="general-tools palette">
+      <i class="material-icons material-inline hide" title="Install" id="install">archive</i>
+      <i class="material-icons material-inline" title="Open" id="open">insert_photo</i>
+      <i class="material-icons material-inline" title="Quality" id="quality">equalizer</i>
+      <i class="material-icons material-inline" title="Results" id="results">system_update</i>
+      <i class="material-icons material-inline" title="Theme" id="theme" data-theme="auto">brightness_auto</i>
+      <i class="material-icons material-inline" title="Help" id="help">help</i>
+      <input type="file" id="open-input" class="hide" multiple />
+    </div>
+  </div>
+
+  <div id="progress" class="progress init">
+    <div class="ring"></div>
+  </div>
+
+  <script type="module">
+    document.querySelector('#unsupported').remove();
+    document.querySelector('#main').classList.remove('hide');
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/libheif-js@1.10.0/libheif/libheif.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.6.1/src/toastify.min.js"></script>
+  <script type="module">
+    import loader from './src/loader.js';
+
+    window.addEventListener('load', function () {
+      loader();
+    });
+  </script>
+  <script src="/analytics.js" async></script>
+</body>
+
+</html>
